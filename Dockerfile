@@ -4,14 +4,20 @@ MAINTAINER opsxcq <opsxcq@thestorm.com.br>
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y software-properties-common transmission-daemon
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    software-properties-common \
+    transmission-daemon && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ADD settings.json /etc/transmission-daemon/
-ADD bootstrap.sh /bootstrap.sh
+ADD main.sh /main.sh
 
-RUN mkdir -p /incomplete && chown -R debian-transmission: /incomplete && \
-    mkdir -p /downloads && chown -R debian-transmission: /downloads && \
-    chown -R debian-transmission: /etc/transmission-daemon
+RUN useradd --system --uid 666 -M --shell /usr/sbin/nologin transmission
+
+RUN mkdir -p /incomplete && chown -R transmission: /incomplete && \
+    mkdir -p /downloads && chown -R transmission: /downloads && \
+    chown -R transmission: /etc/transmission-daemon
 
 VOLUME /downloads
 VOLUME /incomplete
@@ -19,6 +25,6 @@ VOLUME /incomplete
 EXPOSE 9091
 EXPOSE 6669
 
-USER debian-transmission
+USER transmission
 
-CMD ["/bootstrap.sh"]
+CMD ["/main.sh"]
