@@ -23,7 +23,7 @@ VOLUME /downloads
 VOLUME /incomplete
 
 EXPOSE 9091
-EXPOSE 6669
+EXPOSE 6669/udp
 
 USER transmission
 
