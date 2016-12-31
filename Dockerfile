@@ -6,11 +6,11 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     software-properties-common \
+    transmission-remote-cli \
     transmission-daemon && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ADD settings.json /etc/transmission-daemon/
 ADD main.sh /main.sh
 
 RUN useradd --system --uid 666 -M --shell /usr/sbin/nologin transmission
