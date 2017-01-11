@@ -15,7 +15,7 @@ To start it simply run
 
 Then just go to your [transmission web interface](http://localhost:9091/transmission), login with the user ```transmission``` and the password provided in ```TRANSMISSION_PASSWORD``` variable
 
-## Image parameters
+### Image parameters
 
 There are several useful parameters that will be passed to ```settings.json``` configuration file
 
