@@ -22,7 +22,7 @@ If you prefer to use `docker-compose`, here an example:
 ```
 version: '2'
 services:
-    transmission-movies:
+    transmission:
         image: strm/transmission
         restart: always
         ports:
