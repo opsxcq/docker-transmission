@@ -15,6 +15,25 @@ To start it simply run
 
 Then just go to your [transmission web interface](http://localhost:9091/transmission), login with the user ```transmission``` and the password provided in ```TRANSMISSION_PASSWORD``` variable
 
+If you prefer to use `docker-compose`, here an example:
+
+```
+version: '2'
+services:
+    transmission-movies:
+        image: strm/transmission
+        restart: always
+        ports:
+            - "9091:9091"
+        volumes:
+            - /downloaded:/downloads
+            - /incomplete:/incomplete
+        environment:
+            - TRANSMISSION_PASSWORD=secret
+            - TRANSMISSION_DOWNLOAD_LIMIT=1024
+            - TRANSMISSION_DOWNLOAD_QUEUE=20
+```
+
 ## Image parameters
 
 There are several useful parameters that will be passed to ```settings.json``` configuration file
