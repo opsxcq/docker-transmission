@@ -1,9 +1,10 @@
 # Docker image for transmission torrent client
+[![Docker Pulls](https://img.shields.io/docker/pulls/strm/transmission.svg?style=plastic)](https://hub.docker.com/r/strm/transmission/)
 
-A Docker image for Transmission torrent client based on Debian Jessie.
+Transmission is a BitTorrent client which features a variety of user interfaces on top of a cross-platform back-end. Transmission is free software licensed under the terms of the GNU General Public License (GNU GPL), with parts under the MIT License. This repository is a Docker image for Transmission torrent client based on Debian Jessie.
 
 To start it simply run
-
+```
     docker run -d --restart=always \
     -v "$(pwd)/complete:/downloads" \
     -v "$(pwd)/incomplete:/incomplete" \
@@ -12,6 +13,7 @@ To start it simply run
     -e TRANSMISSION_DOWNLOAD_QUEUE=100 \
     -p 9091:9091 \
     strm/transmission
+```
 
 Then just go to your [transmission web interface](http://localhost:9091/transmission), login with the user ```transmission``` and the password provided in ```TRANSMISSION_PASSWORD``` variable
 
@@ -46,3 +48,4 @@ There are several useful parameters that will be passed to ```settings.json``` c
 
   * /downloads - where transmission will store downloaded torrents
   * /incomplete - where transmission will keep unfinished torrents
+
